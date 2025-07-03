@@ -27,6 +27,16 @@ This app allows players and teams to register, submit match results, and receive
 - **Configuration:** Environment variables via `dotenv`
 
 ---
+## 📸 Demo Screenshot
+- Home Page
+- ![image](https://github.com/user-attachments/assets/18e7c5ee-7b4a-4642-863d-60c8ef6c0657)
+- 
+
+
+
+
+
+---
 
 ## 🚀 Getting Started
 
