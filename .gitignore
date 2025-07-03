@@ -1,0 +1,17 @@
+# Node modules
+node_modules/
+
+# Logs
+logs/
+*.log
+
+# dotenv environment variables
+.env
+
+# OS and editor-specific
+.DS_Store
+*.swp
+
+# IDEs
+.vscode/
+.idea/
