@@ -29,8 +29,38 @@ This app allows players and teams to register, submit match results, and receive
 ---
 ## 📸 Demo Screenshot
 - Home Page
-- ![image](https://github.com/user-attachments/assets/18e7c5ee-7b4a-4642-863d-60c8ef6c0657)
-- 
+ ![image](https://github.com/user-attachments/assets/18e7c5ee-7b4a-4642-863d-60c8ef6c0657)
+- Registration Page
+  ![image](https://github.com/user-attachments/assets/519d424b-00f4-4c01-b05c-8792d49dab7d)
+- Games Available
+  ![image](https://github.com/user-attachments/assets/a0cf00ec-28ea-4360-b65b-640640551be2)
+- Player Registration
+  ![image](https://github.com/user-attachments/assets/aea89085-bca1-4053-bd24-25cd334a555f)
+- BGMI Team Registration
+  ![image](https://github.com/user-attachments/assets/b949c6a3-f76c-4563-9e1b-62787ad5f9a3)
+- CSGO Team Registration
+  ![image](https://github.com/user-attachments/assets/93f33526-7170-4262-8d31-4be10d9193e1)
+- Check Result
+  ![image](https://github.com/user-attachments/assets/042475ac-2da9-447d-bb29-0a6702a03714)
+- Result page
+  ![image](https://github.com/user-attachments/assets/4e0a2dc8-2f30-406f-b50c-ac4731d173b8)
+- Admin Login
+  ![image](https://github.com/user-attachments/assets/f837167b-11d8-4df1-8924-4e9e1ad545dc)
+- Declare Result
+  ![image](https://github.com/user-attachments/assets/710cc37a-bcab-4a65-874c-7d8dd631e820)
+- SMS Confirmation
+  ![WhatsApp Image 2025-07-03 at 12 36 48_dc581d64](https://github.com/user-attachments/assets/42763143-9d3d-496e-ac3c-aeab9013261b)
+- MongoDB Atlas
+  ![Screenshot 2025-07-03 123909](https://github.com/user-attachments/assets/1dead73c-d632-4dee-a1be-28d89cadb886)
+
+
+
+
+
+
+
+
+
 
 
 
