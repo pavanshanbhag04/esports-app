@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+	<title>BGMI Results Input</title>
+	<link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet" />
+	<style>
+		* {
+			padding: 0;
+			margin: 0;
+			box-sizing: border-box;
+		}
+		body {
+			background-image: url(img/wp2757834.gif);
+			background-size: cover;
+			height: 100vh;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-family: "Ubuntu", sans-serif;
+		}
+		.container {
+			background-color: white;
+			border-radius: 7px;
+			box-shadow: 0 2px 5px rgba(22, 8, 24, 0.904);
+			width: 437px;
+			max-width: 100%;
+			overflow: hidden;
+		}
+		.header {
+			text-align: center;
+			padding: 20px;
+			background-color: rgb(211, 23, 39);
+			color: white;
+		}
+		.main-form {
+			padding: 30px 40px;
+		}
+		.form {
+			margin-bottom: 20px;
+			position: relative;
+		}
+		.form input {
+			border: 2px solid #f0f0f0;
+			border-radius: 4px;
+			width: 100%;
+			padding: 12px;
+			font-size: 14px;
+		}
+		.form i {
+			position: absolute;
+			top: 35px;
+			right: 10px;
+			visibility: hidden;
+		}
+		.form small {
+			position: absolute;
+			bottom: -18px;
+			left: 5px;
+			visibility: hidden;
+			font-size: 12px;
+		}
+		button {
+			width: 100%;
+			font-size: 18px;
+			padding: 10px;
+			border-radius: 7px;
+			cursor: pointer;
+			color: white;
+			background-color: rgba(201, 9, 9, 0.904);
+			border: none;
+		}
+		button:hover {
+			background-color: rgb(255, 0, 0);
+		}
+		.slide-up-box {
+			width: 100%;
+			color: white;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 20px;
+			border-radius: 10px;
+			opacity: 0;
+			transform: translateY(-100px);
+			transition: transform 1.5s, opacity 1s;
+		}
+		.slide-up-box.visible {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	</style>
+</head>
+<body>
+	<div class="slide-up-box">
+		<div class="container">
+			<div class="header">
+				<h2>BGMI Results Form</h2>
+			</div>
+			<form action="/Create_bgmi_result" method="post" class="main-form" onsubmit="return validateForm()">
+				<div class="form">
+					<label for="Trnt_ID">TOURNAMENT ID</label>
+					<input type="number" name="Trnt_ID" id="Trnt_ID" placeholder="Enter the Tournament ID" autocomplete="off" />
+					<i class="fas fa-check-circle success"></i>
+					<i class="fas fa-exclamation-circle error"></i>
+					<small class="message">Error message</small>
+				</div>
+
+				<div class="form">
+					<label for="bgmi_wnr">BGMI RESULTS</label>
+					<input type="number" name="bgmi_wnr" id="bgmi_wnr" placeholder="Enter the BGMI winners" autocomplete="off" />
+					<i class="fas fa-check-circle success"></i>
+					<i class="fas fa-exclamation-circle error"></i>
+					<small class="message">Error message</small>
+				</div>
+
+				<div class="form">
+					<label for="bgmi_phone">Winner's Phone</label>
+					<input type="tel" name="bgmi_phone" id="bgmi_phone" placeholder="Enter the BGMI winner's phone number" pattern="\d{10}" required />
+					<i class="fas fa-check-circle success"></i>
+					<i class="fas fa-exclamation-circle error"></i>
+					<small class="message">Error message</small>
+				</div>
+				
+				<!-- <div class="form">
+					<label for="adminPassword">Admin Password:</label>
+					<input type="password" name="adminPassword" id="adminPassword" placeholder="Enter Admin Password" required />
+					<i class="fas fa-check-circle success"></i>
+					<i class="fas fa-exclamation-circle error"></i>
+					<small class="message">Error message</small>
+				</div> -->
+
+				<button type="submit">Submit</button>
+			</form>
+		</div>
+	</div>
+
+	<script>
+		// Slide animation
+		document.addEventListener("DOMContentLoaded", function () {
+			const box = document.querySelector(".slide-up-box");
+			setTimeout(() => {
+				requestAnimationFrame(() => {
+					box.classList.add("visible");
+				});
+			}, 100);
+		});
+
+		function validateForm() {
+			const ids = ["Trnt_ID", "bgmi_wnr", "bgmi_phone"];
+			let valid = true;
+
+			ids.forEach((id) => {
+				const input = document.getElementById(id);
+				const form = input.parentElement;
+				const successIcon = form.querySelector(".success");
+				const errorIcon = form.querySelector(".error");
+				const message = form.querySelector(".message");
+
+				if (input.value.trim() === "") {
+					input.style.borderColor = "red";
+					errorIcon.style.visibility = "visible";
+					successIcon.style.visibility = "hidden";
+					message.style.visibility = "visible";
+					message.style.color = "red";
+					message.innerText = `${input.placeholder} cannot be blank`;
+					valid = false;
+				} else if (id === "bgmi_phone" && !/^\d{10}$/.test(input.value.trim())) {
+					input.style.borderColor = "red";
+					errorIcon.style.visibility = "visible";
+					successIcon.style.visibility = "hidden";
+					message.style.visibility = "visible";
+					message.style.color = "red";
+					message.innerText = "Phone number must be exactly 10 digits";
+					valid = false;
+				} else {
+					input.style.borderColor = "green";
+					errorIcon.style.visibility = "hidden";
+					successIcon.style.visibility = "visible";
+					message.style.visibility = "hidden";
+				}
+			});
+
+			return valid;
+		}
+	</script>
+</body>
+</html>

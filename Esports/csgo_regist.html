@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+	<title>CSGO Registration Form</title>
+	<link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+	<style>
+		* {
+			padding: 0;
+			margin: 0;
+			box-sizing: border-box;
+		}
+		body {
+			background-image: url('img/unnamed.jpg');
+			background-size: cover;
+			height: 100vh;
+			margin: 0;	
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-family: 'Ubuntu', sans-serif;
+		}
+		.container {
+			background-color: white;
+			border-radius: 7px;
+			overflow: hidden;
+			box-shadow: 0 2px 5px rgba(22, 8, 24, 0.904);
+			width: 437px;
+			max-width: 100%;
+		}
+		.header {
+			text-align: center;
+			padding: 20px;
+			background-color: rgb(39, 38, 38);
+		}
+		.header h2 {
+			margin: 0;
+			font-size: 30px;
+			color: white;
+		}
+		.main-form {
+			padding: 30px 40px;
+		}
+		.form {
+			padding-bottom: 20px;
+			margin-bottom: 10px;
+			position: relative;
+		}
+		.form input {
+			border: 2px solid #f0f0f0;
+			border-radius: 4px;
+			font-family: inherit;
+			width: 100%;
+			padding: 12px;
+			display: block;
+			font-size: 14px;
+		}
+		.form small {
+			position: absolute;
+			bottom: -18px;
+			left: 5px;
+			color: red;
+			visibility: hidden;
+		}
+		button {
+			width: 100%;
+			font-family: inherit;
+			font-size: 18px;
+			padding: 10px;
+			border-radius: 7px;
+			cursor: pointer;
+			color: white;
+			background-color: rgba(30, 30, 30, 0.904);
+		}
+		button:hover {
+			background-color: rgb(16, 16, 16);
+		}
+		.slide-up-box {
+			width: 100%;
+			color: white;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 20px;
+			border-radius: 10px;
+			opacity: 0;
+			transform: translateY(-100px);
+			transition: transform 1.5s, opacity 1s;
+		}
+		.slide-up-box.visible {
+			opacity: 1;
+			transform: translateY(0);
+		}
+		input.error {
+  border-color: red !important;
+}
+input.success {
+  border-color: green !important;
+}
+
+	</style>
+</head>
+<body>
+	<div class="slide-up-box">
+		<div class="container">
+			<div class="header">
+				<h2>Registration Form</h2>
+				<div><i style='font-size:24px' class='fas fa-user'></i></div>
+			</div>
+			<form action="/csgo_post" method="post" class="main-form" onsubmit="return validateForm()">
+				<div class="form">
+					<label>Team Name</label>
+					<input type="text" placeholder="Enter your CSGO Team Name" name="CSGO_Team_name" id="CSGO_Team_name" autocomplete="off">
+					<small id="error_team_name">Team name is required</small>
+				</div>
+				<div class="form">
+					<label>Player ID</label>
+					<input type="number" placeholder="Enter the player id" name="Player_ID" id="Player_ID" autocomplete="off">
+					<small id="error_player_id">Player ID is required</small>
+				</div>
+				<div class="form">
+					<label>Team ID</label>
+					<input type="number" placeholder="Enter your Team ID" name="CSGO_Team_ID" id="CSGO_Team_ID" autocomplete="off">
+					<small id="error_team_id">Team ID is required</small>
+				</div>
+				<div class="form">
+					<label>Phone Number</label>
+					<input type="tel" placeholder="Enter your phone number" name="Phone" id="phone" autocomplete="off" pattern="[0-9]{10}" required>
+					<small id="error_phone_number">Phone number is required</small>
+				</div>
+				<button type="submit">Submit</button>
+			</form>
+		</div>
+	</div>
+
+	<script>
+		// Slide animation
+		document.addEventListener("DOMContentLoaded", function () {
+			const box = document.querySelector(".slide-up-box");
+			setTimeout(() => {
+				requestAnimationFrame(() => {
+					box.classList.add("visible");
+				});
+			}, 100);
+		});
+
+		// Form validation
+		function validateForm() {
+  let isValid = true;
+
+  const teamName = document.getElementById("CSGO_Team_name");
+  const playerId = document.getElementById("Player_ID");
+  const teamId = document.getElementById("CSGO_Team_ID");
+  const phoneNumber = document.getElementById("Phone_Number");
+
+  const errorTeamName = document.getElementById("error_team_name");
+  const errorPlayerId = document.getElementById("error_player_id");
+  const errorTeamId = document.getElementById("error_team_id");
+  const errorPhoneNumber = document.getElementById("error_phone_number");
+
+  // Reset all errors and classes
+  [errorTeamName, errorPlayerId, errorTeamId, errorPhoneNumber].forEach(e => e.style.visibility = "hidden");
+  [teamName, playerId, teamId, phoneNumber].forEach(i => {
+    i.classList.remove("error");
+    i.classList.remove("success");
+  });
+
+  if (teamName.value.trim() === "") {
+    errorTeamName.style.visibility = "visible";
+    teamName.classList.add("error");
+    isValid = false;
+  } else {
+    teamName.classList.add("success");
+  }
+
+  if (playerId.value.trim() === "") {
+    errorPlayerId.style.visibility = "visible";
+    playerId.classList.add("error");
+    isValid = false;
+  } else {
+    playerId.classList.add("success");
+  }
+
+  if (teamId.value.trim() === "") {
+    errorTeamId.style.visibility = "visible";
+    teamId.classList.add("error");
+    isValid = false;
+  } else {
+    teamId.classList.add("success");
+  }
+
+  const phonePattern = /^[0-9]{10}$/;
+  if (phoneNumber.value.trim() === "") {
+    errorPhoneNumber.innerText = "Phone number is required";
+    errorPhoneNumber.style.visibility = "visible";
+    phoneNumber.classList.add("error");
+    isValid = false;
+  } else if (!phonePattern.test(phoneNumber.value.trim())) {
+    errorPhoneNumber.innerText = "Phone number must be 10 digits";
+    errorPhoneNumber.style.visibility = "visible";
+    phoneNumber.classList.add("error");
+    isValid = false;
+  } else {
+    phoneNumber.classList.add("success");
+  }
+
+  return isValid;
+}
+
+	</script>
+</body>
+</html>

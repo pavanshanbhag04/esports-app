@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tournament Results | Esports India</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+    <div class="wrapper">
+        <!-- NAVIGATION -->
+        <div class="nav">
+            <div class="logo">
+                <h4>Esports.in</h4>
+            </div>
+            <div class="links">
+                <a href="/" class="mainlink">Home</a>
+                <a href="/#about" class="mainlink">About</a>
+                <a href="display.html" class="mainlink">View Results</a>
+                <a href="/admin/result_for_user" class="mainlink">Declare Result</a>
+                <a href="/admin/login" class="admin-link">Admin</a>
+            </div>
+        </div>
+
+        <!-- RESULTS HEADER -->
+        <div class="results-header" data-aos="fade-up" data-aos-duration="1000">
+            <div class="results-hero">
+                <h1>Tournament <span style="color:#e0501b">Results</span></h1>
+                <p>Check out the latest tournament results and standings</p>
+            </div>
+        </div>
+
+        <!-- GAME SELECTION TABS -->
+        <div class="game-tabs" data-aos="fade-up" data-aos-duration="800">
+            <button class="tab-btn active" onclick="switchGame('bgmi')" id="bgmi-tab">
+                <img src="/img/pubg.jpeg" alt="BGMI" class="tab-icon">
+                <span>BGMI</span>
+            </button>
+            <button class="tab-btn" onclick="switchGame('csgo')" id="csgo-tab">
+                <img src="/img/csgo.jpg" alt="CS:GO" class="tab-icon">
+                <span>CS:GO</span>
+            </button>
+        </div>
+
+        <!-- RESULTS CONTENT -->
+        <div class="results-container">
+            <!-- BGMI RESULTS -->
+            <div id="bgmi-results" class="game-results active">
+                <div class="loading-spinner" id="bgmi-loading">
+                    <div class="spinner"></div>
+                    <p>Loading BGMI results...</p>
+                </div>
+                <div class="no-results" id="bgmi-no-results" style="display: none;">
+                    <div class="no-results-icon">🏆</div>
+                    <h3>Results Not Declared</h3>
+                    <p>BGMI tournament results haven't been announced yet. Please check back later!</p>
+                    <div class="result-status">
+                        <span class="status-badge pending">Pending</span>
+                    </div>
+                </div>
+                <div class="results-content" id="bgmi-results-content" style="display: none;">
+                    <div class="tournament-info">
+                        <h2>BGMI Tournament Results</h2>
+                        <div class="tournament-details">
+                            <span class="status-badge completed">Completed</span>
+                        </div>
+                    </div>
+                    <div class="results-table-container">
+                        <table class="results-table">
+                            <thead>
+                                <tr>
+                                    <th>Tournament ID</th>
+                                    <th>Team Name</th>
+                                    <th>Team ID</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bgmi-results-table">
+                                <!-- Results will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CS:GO RESULTS -->
+            <div id="csgo-results" class="game-results">
+                <div class="loading-spinner" id="csgo-loading">
+                    <div class="spinner"></div>
+                    <p>Loading CS:GO results...</p>
+                </div>
+                <div class="no-results" id="csgo-no-results" style="display: none;">
+                    <div class="no-results-icon">🎯</div>
+                    <h3>Results Not Declared</h3>
+                    <p>CS:GO tournament results haven't been announced yet. Please check back later!</p>
+                    <div class="result-status">
+                        <span class="status-badge pending">Pending</span>
+                    </div>
+                </div>
+                <div class="results-content" id="csgo-results-content" style="display: none;">
+                    <div class="tournament-info">
+                        <h2>CS:GO Tournament Results</h2>
+                        <div class="tournament-details">
+                            <span class="status-badge completed">Completed</span>
+                        </div>
+                    </div>
+                    <div class="results-table-container">
+                        <table class="results-table">
+                            <thead>
+                                <tr>
+                                    <th>Tournament ID</th>
+                                    <th>Team Name</th>
+                                    <th>Team ID</th>
+                                </tr>
+                            </thead>
+                            <tbody id="csgo-results-table">
+                                <!-- Results will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- REFRESH BUTTON -->
+        <div class="refresh-section" data-aos="fade-up" data-aos-duration="1000">
+            <button onclick="refreshResults()" class="refresh-btn">
+                <span class="refresh-icon">🔄</span>
+                Refresh Results
+            </button>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <div class="footer-content">
+                <div class="footer-main">
+                    <h2>Esports.in</h2>
+                    <p>India's Premier Esports Tournament Platform</p>
+                </div>
+                <div class="footerlinks">
+                    <a href="/">Home</a>
+                    <a href="/#about">About</a>
+                    <a href="/#registration">Player Registration</a>
+                    <a href="/#info">Games</a>
+                    <a href="/admin/result_for_user" class="mainlink">Declare Result</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Esports.in - All rights reserved</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+
+        let currentGame = 'bgmi';
+
+        function switchGame(game) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`${game}-tab`).classList.add('active');
+            document.querySelectorAll('.game-results').forEach(result => result.classList.remove('active'));
+            document.getElementById(`${game}-results`).classList.add('active');
+            currentGame = game;
+            loadResults(game);
+        }
+
+        async function loadResults(game) {
+            const loadingElement = document.getElementById(`${game}-loading`);
+            const noResultsElement = document.getElementById(`${game}-no-results`);
+            const resultsContentElement = document.getElementById(`${game}-results-content`);
+            const tableBody = document.getElementById(`${game}-results-table`);
+            loadingElement.style.display = 'block';
+            noResultsElement.style.display = 'none';
+            resultsContentElement.style.display = 'none';
+            tableBody.innerHTML = '';
+
+            try {
+                const response = await fetch(`/api/all_results/${game}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.length > 0) {
+                        // show all results
+                        data.forEach(result => {
+                            const row = document.createElement('tr');
+                            row.innerHTML = `
+                                <td>${result.tournamentId}</td>
+                                <td>${result.teamName}</td>
+                                <td>${result.teamId}</td>
+                            `;
+                            tableBody.appendChild(row);
+                        });
+                        loadingElement.style.display = 'none';
+                        resultsContentElement.style.display = 'block';
+                    } else {
+                        loadingElement.style.display = 'none';
+                        noResultsElement.style.display = 'block';
+                    }
+                } else {
+                    loadingElement.style.display = 'none';
+                    noResultsElement.style.display = 'block';
+                }
+            } catch (error) {
+                loadingElement.style.display = 'none';
+                noResultsElement.style.display = 'block';
+            }
+        }
+
+        function refreshResults() {
+            loadResults(currentGame);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadResults('bgmi');
+        });
+    </script>
+
+
+    
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            background: #1a1a1a;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        .wrapper {
+            min-height: 100vh;
+        }
+
+        /* Navigation Styles */
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: rgba(0,0,0,0.9);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .logo h4 {
+            color: #e0501b;
+            font-size: 1.5rem;
+        }
+
+        .links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .links a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+         .links a:hover, .mainlink { 
+            color: #e0501b;
+        }
+
+        .admin-link {
+            background: #dc3545;
+            padding: 8px 15px;
+            border-radius: 5px;
+            color: white !important;
+        }
+
+        /* Results Header */
+        .results-header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            padding: 120px 40px 60px;
+            text-align: center;
+        }
+
+        .results-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .results-hero p {
+            font-size: 1.2rem;
+            color: #ccc;
+        }
+
+        /* Game Tabs */
+        .game-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 40px 20px;
+            background: #2d2d2d;
+        }
+
+        .tab-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: #333;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .tab-btn:hover {
+            background: #444;
+            transform: translateY(-2px);
+        }
+
+        .tab-btn.active {
+            background: #e0501b;
+            color: #fff;
+        }
+
+        .tab-icon {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Results Container */
+        .results-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .game-results {
+            display: none;
+        }
+
+        .game-results.active {
+            display: block;
+        }
+
+        /* Loading Spinner */
+        .loading-spinner {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #333;
+            border-top: 4px solid #e0501b;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* No Results */
+        .no-results {
+            text-align: center;
+            padding: 80px 20px;
+            background: #2d2d2d;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .no-results-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .no-results h3 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: #e0501b;
+        }
+
+        .no-results p {
+            font-size: 1.1rem;
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+
+        /* Status Badges */
+        .status-badge {
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .status-badge.pending {
+            background: #ffc107;
+            color: #000;
+        }
+
+        .status-badge.completed {
+            background: #28a745;
+            color: #fff;
+        }
+
+        /* Results Content */
+        .results-content {
+            background: #2d2d2d;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+        }
+
+        .tournament-info {
+            margin-bottom: 30px;
+        }
+
+        .tournament-info h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: #e0501b;
+        }
+
+        .tournament-details {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .tournament-date, .tournament-type {
+            color: #ccc;
+        }
+
+        /* Results Table */
+        .results-table-container {
+            overflow-x: auto;
+        }
+
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .results-table th {
+            background: #e0501b;
+            color: #fff;
+            padding: 15px 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .results-table td {
+            padding: 15px 10px;
+            border-bottom: 1px solid #444;
+        }
+
+        .results-table tr:hover {
+            background: #333;
+        }
+
+        .rank-cell {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .rank-number {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .rank-medal {
+            font-size: 1.5rem;
+        }
+
+        .team-name {
+            font-weight: 600;
+            color: #e0501b;
+        }
+
+        .first-place {
+            background: rgba(255, 215, 0, 0.1);
+        }
+
+        .second-place {
+            background: rgba(192, 192, 192, 0.1);
+        }
+
+        .third-place {
+            background: rgba(205, 127, 50, 0.1);
+        }
+
+        /* Refresh Section */
+        .refresh-section {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .refresh-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            background: #e0501b;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            background: #c5441a;
+            transform: translateY(-2px);
+        }
+
+        .refresh-btn.refreshing .refresh-icon {
+            animation: spin 1s linear infinite;
+        }
+
+        /* Footer */
+        .footer {
+            background: #111;
+            padding: 0px 20px 20px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 30px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer-main h2 {
+            color: #e0501b;
+            margin-bottom: 10px;
+        }
+
+        .footer-main p {
+            color: #ccc;
+        }
+
+        .footerlinks {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footerlinks a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footerlinks a {
+            color: #e0501b;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #444;
+            padding-top: 20px;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            color: #888;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav {
+                padding: 15px 20px;
+            }
+
+            .results-header {
+                padding: 100px 20px 40px;
+            }
+
+            .results-hero h1 {
+                font-size: 2rem;
+            }
+
+            .game-tabs {
+                flex-direction: column;
+                align-items: center;
+                padding: 20px;
+            }
+
+            .tab-btn {
+                width: 200px;
+                justify-content: center;
+            }
+
+            .tournament-details {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .results-table {
+                font-size: 0.9rem;
+            }
+
+            .results-table th,
+            .results-table td {
+                padding: 10px 8px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footerlinks {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .links {
+                gap: 15px;
+            }
+
+            .links a {
+                font-size: 0.9rem;
+            }
+
+            .results-table {
+                font-size: 0.8rem;
+            }
+
+            .results-table th,
+            .results-table td {
+                padding: 8px 5px;
+            }
+        }
+    </style>
+</body>
+</html>

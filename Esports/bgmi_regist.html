@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+	<title>Registration Form</title>
+	<link rel="stylesheet" href="">
+	<link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+			box-sizing: border-box;
+
+		}
+		body{
+				background-image: url(img/pubg.jpeg);
+				background-size: cover;
+				height: 100vh;
+				margin: 0;	
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				font-family: 'Ubuntu', sans-serif;
+		}
+		.container{
+			background-color: white;
+			border-radius: 7px;
+			overflow: hidden;
+			box-shadow: 0 2px 5px rgba(22, 8, 24, 0.904);
+			width: 437px;
+			max-width: 100%;
+		}
+		.header{
+			text-align: center;
+			padding: 20px;
+			background-color: rgb(246, 155, 95);
+		}
+		.header h2{
+			margin: 0;
+			font-size: 30px;
+		}
+		.main-form{
+			padding: 30px 40px;
+		}
+		.form{
+			padding-bottom: 20px;
+			margin-bottom: 10px;
+			position: relative;
+		}
+		.form input{
+			border: 2px solid #f0f0f0;
+			border-radius: 4px;
+			font-family: inherit;
+			width: 100%;
+			padding: 12px;
+			display: block;
+			font-size: 14px;
+		}
+		.form i{
+			position: absolute;
+			top: 32px;
+			right: 10px;
+			visibility: hidden;
+
+		}
+		.form small{
+			position: absolute;
+			bottom: 0;
+			left: 5px;
+			visibility: hidden;
+
+		}
+		button{
+			width: 100%;
+			font-family: inherit;
+			font-size: 18px;
+			padding: 10px;
+			border-radius: 7px;
+			cursor: pointer;
+			color: white;
+			background-color: rgb(242, 131, 51);
+			
+		}
+		button:hover{
+			background-color: rgb(255, 102, 0);
+			color: white;
+		}
+
+		.h2{
+			color: white;
+		}
+		.slide-up-box {
+    width: 100%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    border-radius: 10px;
+    opacity: 0;
+    transform: translateY(-100px);
+    transition: transform 1.5s, opacity 1s;
+}
+
+.slide-up-box.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+		
+
+
+	</style>
+</head>
+<body>
+	<div class="slide-up-box">
+	<div class="container">
+		<div class="header">
+			<h2 class="h2">Registration Form</h2>
+		</div>
+			<form action="/bgmi_post" method="post" class="main-form" onsubmit="return myfun()">
+				<div class="form">
+					<label for="">Team name</label>
+					<input type="text" placeholder="Enter your BGMI Team Name" name="BGMI_Team_name" id="BGMI_Team_name" autocomplete="off">
+					<i class="fas sucess">&#xf058;</i>
+					<i class="fas error">&#xf06a;</i>
+					<small class="message">error message</small>
+				</div>
+				<div class="form">
+					<label for="">Player ID</label>
+					<input type="number" placeholder="Enter the player id" name="Player_ID" id="Player_ID" autocomplete="off" required>
+					<i class="fas sucess">&#xf058;</i>
+					<i class="fas error">&#xf06a;</i>
+					<small class="message">error message</small>
+				</div>
+
+				<div class="form">
+					<label for="">Team ID</label>
+					<input type="number" placeholder="Enter your Team ID" name="BGMI_Team_ID" id="BGMI_Team_ID" autocomplete="off">
+					<i class="fas sucess">&#xf058;</i>
+					<i class="fas error">&#xf06a;</i>
+					<small class="message">error message</small>
+				</div>
+				<div class="form">
+					<label for="">Phone Number</label>
+					<input type="tel" placeholder="Enter your phone number" name="Phone" id="phone" autocomplete="off" pattern="[0-9]{10}" required>
+					<i class="fas sucess">&#xf058;</i>
+					<i class="fas error">&#xf06a;</i>
+					<small class="message">error message</small>
+				</div>
+				
+				<button>Submit</button>
+
+					
+			</form>
+		
+	</div>
+</div>
+	<script>
+
+			// script.js
+// script.js
+document.addEventListener("DOMContentLoaded", function() {
+    const box = document.querySelector(".slide-up-box");
+    setTimeout(() => {
+        requestAnimationFrame(() => {
+            box.classList.add("visible");
+        });
+    }, 100); // Short delay to ensure CSS is applied before transition starts
+});
+			function myfun() {
+    let isValid = true;
+
+    const teamName = document.getElementById('BGMI_Team_name');
+    const playerId = document.getElementById('Player_ID');
+    const teamId = document.getElementById('BGMI_Team_ID');
+    const phoneNumber = document.getElementById('Phone_Number');
+
+    // Get all form divs with class 'form'
+    const forms = document.querySelectorAll('.form');
+
+    // Helper function to show error
+    function showError(formDiv, message) {
+        formDiv.querySelector('input').style.borderColor = 'red';
+        formDiv.querySelector('.error').style.visibility = 'visible';
+        formDiv.querySelector('.error').style.color = 'red';
+        formDiv.querySelector('.sucess').style.visibility = 'hidden';
+        formDiv.querySelector('.message').style.visibility = 'visible';
+        formDiv.querySelector('.message').style.color = 'red';
+        formDiv.querySelector('.message').innerText = message;
+        isValid = false;
+    }
+
+    // Helper function to show success
+    function showSuccess(formDiv) {
+        formDiv.querySelector('input').style.borderColor = 'green';
+        formDiv.querySelector('.error').style.visibility = 'hidden';
+        formDiv.querySelector('.sucess').style.visibility = 'visible';
+        formDiv.querySelector('.sucess').style.color = 'green';
+        formDiv.querySelector('.message').style.visibility = 'hidden';
+    }
+
+    // Team Name validation (required and no leading numbers)
+    if (teamName.value.trim() === "") {
+        showError(forms[0], "Team name is required");
+    } else if (/^\d/.test(teamName.value.trim())) {
+        showError(forms[0], "Team name cannot start with a number");
+    } else {
+        showSuccess(forms[0]);
+    }
+
+    // Player ID validation (required, number > 0)
+    if (playerId.value.trim() === "") {
+        showError(forms[1], "Player ID is required");
+    } else if (isNaN(playerId.value) || Number(playerId.value) <= 0) {
+        showError(forms[1], "Player ID must be a positive number");
+    } else {
+        showSuccess(forms[1]);
+    }
+
+    // Team ID validation (required, number > 0)
+    if (teamId.value.trim() === "") {
+        showError(forms[2], "Team ID is required");
+    } else if (isNaN(teamId.value) || Number(teamId.value) <= 0) {
+        showError(forms[2], "Team ID must be a positive number");
+    } else {
+        showSuccess(forms[2]);
+    }
+
+    // Phone Number validation (required, basic phone format)
+    if (phoneNumber.value.trim() === "") {
+        showError(forms[3], "Phone number is required");
+    } else if (!/^\+?[\d\s\-]{7,15}$/.test(phoneNumber.value.trim())) {
+        showError(forms[3], "Enter a valid phone number");
+    } else {
+        showSuccess(forms[3]);
+    }
+
+    return isValid;
+}
+function myfun() {
+    let isValid = true;
+
+    const teamName = document.getElementById('BGMI_Team_name');
+    const playerId = document.getElementById('Player_ID');
+    const teamId = document.getElementById('BGMI_Team_ID');
+    const phoneNumber = document.getElementById('Phone_Number');
+
+    // Get all form divs with class 'form'
+    const forms = document.querySelectorAll('.form');
+
+    // Helper function to show error
+    function showError(formDiv, message) {
+        formDiv.querySelector('input').style.borderColor = 'red';
+        formDiv.querySelector('.error').style.visibility = 'visible';
+        formDiv.querySelector('.error').style.color = 'red';
+        formDiv.querySelector('.sucess').style.visibility = 'hidden';
+        formDiv.querySelector('.message').style.visibility = 'visible';
+        formDiv.querySelector('.message').style.color = 'red';
+        formDiv.querySelector('.message').innerText = message;
+        isValid = false;
+    }
+
+    // Helper function to show success
+    function showSuccess(formDiv) {
+        formDiv.querySelector('input').style.borderColor = 'green';
+        formDiv.querySelector('.error').style.visibility = 'hidden';
+        formDiv.querySelector('.sucess').style.visibility = 'visible';
+        formDiv.querySelector('.sucess').style.color = 'green';
+        formDiv.querySelector('.message').style.visibility = 'hidden';
+    }
+
+    // Team Name validation (required and no leading numbers)
+    if (teamName.value.trim() === "") {
+        showError(forms[0], "Team name is required");
+    } else if (/^\d/.test(teamName.value.trim())) {
+        showError(forms[0], "Team name cannot start with a number");
+    } else {
+        showSuccess(forms[0]);
+    }
+
+    // Player ID validation (required, number > 0)
+    if (playerId.value.trim() === "") {
+        showError(forms[1], "Player ID is required");
+    } else if (isNaN(playerId.value) || Number(playerId.value) <= 0) {
+        showError(forms[1], "Player ID must be a positive number");
+    } else {
+        showSuccess(forms[1]);
+    }
+
+    // Team ID validation (required, number > 0)
+    if (teamId.value.trim() === "") {
+        showError(forms[2], "Team ID is required");
+    } else if (isNaN(teamId.value) || Number(teamId.value) <= 0) {
+        showError(forms[2], "Team ID must be a positive number");
+    } else {
+        showSuccess(forms[2]);
+    }
+
+    // Phone Number validation (required, basic phone format)
+    if (phoneNumber.value.trim() === "") {
+        showError(forms[3], "Phone number is required");
+    } else if (!/^\+?[\d\s\-]{7,15}$/.test(phoneNumber.value.trim())) {
+        showError(forms[3], "Enter a valid phone number");
+    } else {
+        showSuccess(forms[3]);
+    }
+
+    return isValid;
+}
+
+
+
+
+
+
+
+
+	</script>
+</body>
+</html>

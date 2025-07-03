@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Esports India | Home</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="nav">
+            <div class="logo">
+                <h4>Esports.in</h4>
+            </div>
+            <div class="links">
+                <a href="#home" class="mainlink">Home</a>
+                <a href="#about">About</a>
+                <a href="display.html">View Results</a>
+                <a href="/admin/result_for_user">Declare Result</a>
+                <a href="/admin/login" class="admin-link">Admin</a>
+            </div>
+        </div>
+
+        <!-- LANDING PAGE -->
+        <div class="landing" id="home">
+            <div class="landingText" data-aos="fade-up" data-aos-duration="1000">
+                <h1>E-sports<span style="color:#e0501b;font-size: 4vw"> in India</span></h1>
+                <div class="btn">
+                    <a href="#about">Learn More</a>
+                </div>
+            </div>
+            <div class="landingImage" data-aos="fade-down" data-aos-duration="2000">
+                <img src="img/gma.png" alt="Esports Gaming">
+            </div>
+        </div>
+
+        <!-- REGISTRATION SECTION -->
+        <div class="registration-section" id="registration">
+            <div class="registration-header" data-aos="fade-up" data-aos-duration="1000">
+                <h1>Join the <span style="color:#e0501b">Tournament</span></h1>
+                <p>Register as a player first, then join your preferred game team</p>
+            </div>
+            <div class="registration-steps">
+                <div class="step-card" data-aos="fade-up" data-aos-duration="800">
+                    <div class="step-number">1</div>
+                    <h3>Player Registration</h3>
+                    <p>Create your player profile to get started</p>
+                    <a href="/" class="step-btn">Register Now</a>
+                </div>
+                <div class="step-card" data-aos="fade-up" data-aos-duration="1200">
+                    <div class="step-number">2</div>
+                    <h3>Choose Your Game</h3>
+                    <p>Join BGMI or CS:GO tournaments</p>
+                    <div class="game-buttons">
+                        <a href="/bgmi_post" class="game-btn bgmi-btn">BGMI</a>
+                        <a href="/csgo_post" class="game-btn csgo-btn">CS:GO</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ABOUT SECTION -->
+        <div class="about" id="about">
+            <div class="aboutText" data-aos="fade-up" data-aos-duration="1000">
+                <h1>E-sports in India</h1>
+                <img src="img/gma2.png" style="width: 500px; height: 500px;" alt="Esports in India">
+            </div>
+            <div class="aboutList" data-aos="fade-left" data-aos-duration="1000">
+                <ol>
+                    <li> 
+                        <span>01</span>
+                        <p>It is no surprise that the esports scene in India is also on the rise. BGMI, Call Of Duty, Tekken 7, DOTA2, FIFA are amongst the more popular esports in India</p>
+                    </li>
+                    <li> 
+                        <span>02</span>
+                        <p>The year 2022 has perhaps been the most exciting year for gaming and esports enthusiasts globally. With esports growing prominence, the world witnessed the first ever Commonwealth Esports Championship.</p>
+                    </li>
+                    <li> 
+                        <span>03</span>
+                        <p>Leading brands and advertisers are collaborating with eSports platforms and tournaments to make the most of this growing space. In 2020, LetsGameNow collaborated with Flipkart for the Pro Gaming Showdown Tournament, and NODWIN gaming partnered with Airtel to launch the Airtel India Esports Tour, a national ranking and award system for Indian esports players.</p>
+                    </li>
+                    <li> 
+                        <span>04</span>
+                        <p>India saw esports players double from 300,000 in 2020 to 600,000 in 2021, with revenue growing by 29% from Rs.7.5 Billion in 2020 to Rs. 9.7 Billion in 2021.</p>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- GAMES INFO SECTION -->
+        <div class="infoSection" id="info">
+            <div class="infoHeader" data-aos="fade-up" data-aos-duration="1000">
+                <h1>Tournament Games Available</h1>
+                <p>Choose your battlefield and register your team</p>
+            </div>
+            <div class="infoCards">
+                <div class="card one" data-aos="fade-up" data-aos-duration="1000">
+                    <div class="cardbgone"></div>
+                    <div class="cardContent">
+                        <h2>BGMI</h2>
+                        <p>Battle Grounds Mobile India</p>
+                        <p class="card-description">Join the ultimate mobile battle royale tournament</p>
+                        <a href="/bgmi_post">
+                            <div class="cardBtn">
+                                <span>Register Team</span>
+                                <img src="img/next.png" alt="Next" class="cardIcon">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="card three" data-aos="fade-up" data-aos-duration="1600">
+                    <div class="cardbgthree"></div>
+                    <div class="cardContent">
+                        <h2>CS:GO</h2>
+                        <p>Counter-Strike: Global Offensive</p>
+                        <p class="card-description">Compete in the legendary tactical shooter</p>
+                        <a href="/csgo_post">
+                            <div class="cardBtn">
+                                <span>Register Team</span>
+                                <img src="img/next.png" alt="Next" class="cardIcon">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TOURNAMENT STATUS SECTION -->
+        <div class="tournament-status" id="status" data-aos="fade-up" data-aos-duration="1000">
+            <div class="status-header">
+                <h2>Tournament Status</h2>
+                <p>Check Results</p>
+            </div>
+            <div class="status-buttons">
+                <a href="display.html" class="status-btn">View Results</a>
+            </div>
+        </div>
+
+        <!-- ADMIN SECTION (Only visible when needed) -->
+        <div class="admin-section" id="admin-section" style="display: none;">
+            <div class="admin-header" data-aos="fade-up" data-aos-duration="1000">
+                <h2>Admin Panel</h2>
+                <p>Manage tournaments and results</p>
+            </div>
+            <div class="admin-buttons">
+                <a href="/Create_bgmi_result" class="admin-btn">BGMI Results</a>
+                <a href="/Create_csgo_result" class="admin-btn">CS:GO Results</a>
+                <a href="/admin/logout" class="admin-btn logout">Logout</a>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <div class="footer-content">
+                <div class="footer-main">
+                    <h2>Esports.in</h2>
+                    <p>India's Premier Esports Tournament Platform</p>
+                </div>
+                <div class="footerlinks">
+                    <a href="#" class="mainlink">Home</a>
+                    <a href="#about">About</a>
+                    <a href="/#registration">Player Registration</a>
+                    <a href="#info">Games</a>
+                    <a href="/admin/result_for_user">Declare Result</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Esports.in - All rights reserved</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+
+        // Check if user is admin (you can enhance this based on your session management)
+        function checkAdminStatus() {
+            // This is a simple check - you might want to implement a proper API call
+            fetch('/api/admin-status')
+                .then(response => {
+                    if (response.ok) {
+                        document.getElementById('admin-section').style.display = 'block';
+                    }
+                })
+                .catch(err => {
+                    // Admin not logged in, keep section hidden
+                });
+        }
+
+    
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Call admin status check on page load
+        // checkAdminStatus();
+    </script>
+
+    <style>
+        /* Additional styles for new sections */
+        .registration-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            text-align: center;
+        }
+
+        .registration-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .registration-header p {
+            font-size: 1.1rem;
+            color: #ccc;
+            margin-bottom: 50px;
+        }
+
+        .registration-steps {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .step-card {
+            background: #333;
+            padding: 30px;
+            border-radius: 15px;
+            flex: 1;
+            min-width: 250px;
+            max-width: 350px;
+            transition: transform 0.3s ease;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .step-number {
+            background: #e0501b;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+
+        .step-card h3 {
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .step-card p {
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+
+        .step-btn, .game-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #e0501b;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+            margin: 5px;
+        }
+
+        .step-btn:hover, .game-btn:hover {
+            background: #c5441a;
+        }
+
+        .game-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .tournament-status {
+            padding: 60px 20px;
+            background: #f8f9fa;
+            text-align: center;
+        }
+
+        .status-header h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .status-header p {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .status-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .status-btn {
+            padding: 12px 30px;
+            background: #e0501b;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .status-btn:hover {
+            background: #c5441a;
+        }
+
+        .status-btn.secondary {
+            background: #6c757d;
+        }
+
+        .status-btn.secondary:hover {
+            background: #5a6268;
+        }
+
+        .admin-section {
+            padding: 60px 20px;
+            background: #dc3545;
+            text-align: center;
+            color: white;
+        }
+
+        .admin-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .admin-btn {
+            padding: 12px 25px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .admin-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .admin-btn.logout {
+            background: #721c24;
+        }
+
+        .admin-btn.logout:hover {
+            background: #5a161d;
+        }
+
+        .card-description {
+            font-size: 0.9rem;
+            color: #bbb;
+            margin-bottom: 15px;
+        }
+
+        .cardBtn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-main p {
+            color: #ccc;
+            margin-top: 10px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #444;
+            padding-top: 20px;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            color: #888;
+            margin: 0;
+        }
+
+        .admin-link {
+            background: #dc3545;
+            padding: 8px 15px;
+            border-radius: 5px;
+            color: white !important;
+        }
+
+        @media (max-width: 768px) {
+            .registration-steps {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .status-buttons, .admin-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</body>
+</html>
