@@ -39,12 +39,16 @@ npm install
 
 ```
 ### 2. Create a .env file in the root directory
-
+```bash
 TWILIO_ACCOUNT_SID=your_twilio_account_sid
 TWILIO_AUTH_TOKEN=your_twilio_auth_token
 SESSION_SECRET=your_random_session_secret
 MONGO_URI=your_mongodb_connection_uri
 
+```
+
 ### Start the server
+```bash
 nodemon server.js
+```
 
