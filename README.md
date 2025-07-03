@@ -49,7 +49,7 @@ This app allows players and teams to register, submit match results, and receive
 - Declare Result
   ![image](https://github.com/user-attachments/assets/710cc37a-bcab-4a65-874c-7d8dd631e820)
 - SMS Confirmation
-  ![WhatsApp Image 2025-07-03 at 12 36 48_dc581d64](https://github.com/user-attachments/assets/42763143-9d3d-496e-ac3c-aeab9013261b)
+  ![WhatsApp Image 2025-07-03 at 12 36 48_3156ed80](https://github.com/user-attachments/assets/a200e536-8c3d-4f5e-821b-f4e64c19a028)
 - MongoDB Atlas
   ![Screenshot 2025-07-03 123909](https://github.com/user-attachments/assets/1dead73c-d632-4dee-a1be-28d89cadb886)
 
